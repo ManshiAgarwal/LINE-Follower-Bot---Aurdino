@@ -1,0 +1,118 @@
+int in1=6;
+int in2=5;
+int enA=10;
+int in3=7;
+int in4=8;
+int enB=9;
+int L=2;
+int M=3;
+int R=4;
+
+void setup()
+{
+  pinMode(in1,OUTPUT);
+  pinMode(in2,OUTPUT);
+  pinMode(enA,OUTPUT);
+  pinMode(in3,OUTPUT);
+  pinMode(in4,OUTPUT);
+  pinMode(enB,OUTPUT);
+
+
+ pinMode(L,INPUT);
+ pinMode(M,INPUT);
+ pinMode(R,INPUT);
+ Serial.begin(9600);
+}
+
+void loop()
+{
+bool val1=digitalRead(L);
+bool val2=digitalRead(M);
+bool val3=digitalRead(R);
+
+
+
+ if(val1==1 && val2==0 && val3==1)
+ {
+   forward();  
+ }
+ else if(val1==0 && val2==1 && val3==0)
+ {
+forward(); 
+ }
+ else if(val1==0 && val2==0 && val3==0)
+ {
+forward(); 
+ }
+
+else if(val1==0 && val2==1 && val3==1)
+{
+   left();
+
+}
+else if(val1==0 && val2==0 && val3==1)
+{
+  right();
+ }
+else if(val1==1 && val2==1 && val3==0)
+{
+  right();
+}
+else if(val1==1 && val2==1 && val3==1)
+{
+  stop();
+}
+}
+ void forward()
+
+{
+  digitalWrite(in1,HIGH);
+   digitalWrite(in2,LOW);
+   digitalWrite(in3,HIGH);
+  digitalWrite(in4,LOW);
+   analogWrite(enA,50);
+   analogWrite(enB,50);
+  
+ }
+
+ void backward()
+ {
+   digitalWrite(in1,LOW);
+   digitalWrite(in2,HIGH);
+   digitalWrite(in3,LOW);
+   digitalWrite(in4,HIGH);
+   analogWrite(enA,70);
+   analogWrite(enB,70); 
+ }
+
+
+ void left()
+ {
+   digitalWrite(in1,HIGH);
+   digitalWrite(in2,LOW);
+   digitalWrite(in3,LOW);
+   digitalWrite(in4,HIGH);
+   analogWrite(enA,65);
+   analogWrite(enB,65);
+ }
+
+
+ void right()
+ {
+   digitalWrite(in1,LOW);
+   digitalWrite(in2,HIGH);
+   digitalWrite(in3,HIGH);
+   digitalWrite(in4,LOW);
+   analogWrite(enA,65);
+   analogWrite(enB,65);
+ }
+
+void stop()
+ {
+   digitalWrite(in1,LOW);
+   digitalWrite(in2,LOW);
+   digitalWrite(in3,LOW);
+   digitalWrite(in4,LOW);
+   analogWrite(enA,50);
+   analogWrite(enB,50);
+ }
